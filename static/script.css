@@ -1,0 +1,111 @@
+/* Modern "Paper" Theme - Fixed Scrolling */
+body {
+    background-color: #F9F9F5;
+    color: #333333;
+    font-family: 'Georgia', 'Times New Roman', serif;
+    margin: 0;
+    height: 100vh; /* Critical: Force body to screen height */
+    width: 100vw;
+    overflow: hidden; /* Critical: No global scroll */
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: 35% 65%;
+    height: 100vh; /* Critical: Grid matches screen height */
+    width: 100vw;
+}
+
+.panel {
+    border-right: 1px solid #E0E0E0;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    height: 100%; /* Critical: Panel fills grid cell */
+    box-sizing: border-box;
+    background-color: #F9F9F5;
+    overflow: hidden; /* <--- THIS WAS MISSING. Keeps children contained. */
+}
+
+.header {
+    border-bottom: 2px solid #DA7756;
+    padding-bottom: 15px;
+    margin-bottom: 20px;
+    font-family: 'Helvetica Neue', sans-serif;
+    font-weight: 600;
+    font-size: 14px;
+    letter-spacing: 1px;
+    color: #DA7756;
+    text-transform: uppercase;
+    flex-shrink: 0; /* Header never shrinks */
+}
+
+.chat-history {
+    flex-grow: 1; /* Fills all remaining space */
+    overflow-y: auto; /* Forces scrollbar when full */
+    min-height: 0; /* Critical Flexbox fix */
+    padding-right: 15px;
+    padding-bottom: 20px;
+    scroll-behavior: smooth;
+}
+
+/* Input Area - Stuck to bottom */
+.input-area {
+    flex-shrink: 0; /* Never collapses */
+    padding-top: 15px;
+    background-color: #F9F9F5;
+    border-top: 1px solid #E0E0E0;
+}
+
+/* --- STYLING (Same as before) --- */
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: #D0D0D0; border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: #DA7756; }
+
+.message { 
+    margin-bottom: 20px; 
+    padding-left: 15px; 
+    line-height: 1.6;
+    border-left: 3px solid transparent;
+}
+.user-msg { 
+    color: #111; 
+    border-left-color: #DA7756; 
+    background-color: #fff0eb; 
+    padding: 10px;
+    border-radius: 0 8px 8px 0;
+}
+.bot-msg { 
+    color: #444; 
+    border-left-color: #999; 
+}
+
+.log-entry {
+    color: #888;
+    font-size: 11px;
+    margin-bottom: 4px;
+    font-family: 'Consolas', monospace;
+}
+
+input {
+    width: 100%;
+    background: #FFFFFF;
+    border: 1px solid #D0D0D0;
+    color: #333;
+    padding: 15px;
+    font-family: 'Helvetica Neue', sans-serif;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    outline: none;
+    transition: all 0.3s ease;
+    box-sizing: border-box; /* Ensures padding doesn't break width */
+}
+input:focus {
+    border-color: #DA7756;
+    box-shadow: 0 4px 12px rgba(218, 119, 86, 0.15);
+}
+
+#vector-graph { width: 100%; height: 100%; }
