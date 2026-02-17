@@ -29,7 +29,7 @@ vector_store = FAISS.load_local(
     allow_dangerous_deserialization=True
 )
 
-print("[SYSTEM] Waking Mistral-7B Nexus...")
+print("[SYSTEM] Waking phi4custom-7B Nexus...")
 llm = ChatOllama(model="phi4-mini-custom", temperature=0.1)
 
 # Prompt
@@ -155,11 +155,11 @@ async def main(message: cl.Message):
             display="inline"
         )
         step.elements = [image]
-        step.output = "Topology visualized. Establishing connection to Mistral Nexus."
+        step.output = "Topology visualized. Establishing connection to phi4custom Nexus."
         # DRAMATIC PAUSE (Longer for the map effect)
         await asyncio.sleep(3.5)
 
-    # --- MISTRAL GENERATION ---
+    # --- phi4custom GENERATION ---
     
     # Prepare context & elements
     source_elements = [image] # Add map to final answer
